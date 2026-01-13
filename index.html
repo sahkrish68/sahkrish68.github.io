@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krish Bikram Sah — Portfolio</title>
+  <meta name="description" content="Personal portfolio of Your Name — projects, skills, experience and contact." />
+
+  <style>
+    :root{
+      --bg: #070A0F;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.10);
+      --accent: #8B5CF6;   /* violet */
+      --accent2:#22D3EE;   /* cyan */
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    /* Light mode (optional toggle) */
+    [data-theme="light"]{
+      --bg: #F7F8FC;
+      --panel: rgba(0,0,0,.04);
+      --panel2: rgba(0,0,0,.06);
+      --text: rgba(0,0,0,.92);
+      --muted: rgba(0,0,0,.64);
+      --line: rgba(0,0,0,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 10% -10%, rgba(139,92,246,.35), transparent 55%),
+                  radial-gradient(1200px 700px at 90% 10%, rgba(34,211,238,.25), transparent 50%),
+                  radial-gradient(900px 600px at 50% 110%, rgba(139,92,246,.18), transparent 60%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{width: min(var(--max), 92vw); margin:0 auto}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.10));
+      border-bottom: 1px solid var(--line);
+    }
+    [data-theme="light"] .nav{
+      background: linear-gradient(to bottom, rgba(255,255,255,.75), rgba(255,255,255,.35));
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width: 36px; height:36px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+    .links{
+      display:flex; align-items:center; gap: 16px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .links a{padding:8px 10px; border-radius: 12px}
+    .links a:hover{background: var(--panel)}
+    .nav-actions{display:flex; align-items:center; gap:10px}
+    .btn{
+      border:1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      display:inline-flex; align-items:center; gap:10px;
+      box-shadow: none;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: var(--panel2); border-color: rgba(255,255,255,.18)}
+    [data-theme="light"] .btn:hover{border-color: rgba(0,0,0,.18)}
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #06101a;
+    }
+    .btn.primary:hover{transform: translateY(-1px) scale(1.01)}
+    .icon{
+      width:16px; height:16px; display:inline-block;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 64px 0 34px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr; }
+      .links{display:none}
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.55));
+    }
+
+    .hero-left{padding: 26px}
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-weight: 700;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 8px 12px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+    }
+    .dot{
+      width: 8px; height:8px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(34,211,238,.5);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 60ch;
+    }
+    .hero-cta{display:flex; flex-wrap:wrap; gap: 10px}
+    .meta{
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line);
+      display:flex; flex-wrap:wrap; gap: 10px 18px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .hero-right{padding: 18px}
+    .profile{
+      padding: 16px;
+      display:flex; gap: 14px; align-items:center;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    [data-theme="light"] .profile{ background: rgba(0,0,0,.03); }
+    .avatar{
+      width: 62px; height:62px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(40px 40px at 30% 30%, rgba(255,255,255,.22), transparent 70%),
+        linear-gradient(135deg, rgba(139,92,246,.55), rgba(34,211,238,.35));
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900;
+      letter-spacing: .5px;
+      color: rgba(255,255,255,.9);
+    }
+    [data-theme="light"] .avatar{ color: rgba(0,0,0,.85) }
+    .profile h3{margin:0; font-size: 16px}
+    .profile p{margin:4px 0 0; color: var(--muted); font-weight: 600; font-size: 13px}
+
+    .quick{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .pill{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    [data-theme="light"] .pill{background: rgba(0,0,0,.03)}
+    .pill b{display:block; font-size: 13px}
+    .pill span{display:block; margin-top:4px; color: var(--muted); font-weight: 600; font-size: 13px}
+
+    .stats{
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(139,92,246,.14), rgba(34,211,238,.10));
+    }
+    .stats-row{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align:center;
+    }
+    .stat{
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    [data-theme="light"] .stat{
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .stat .n{font-size: 18px; font-weight: 900}
+    .stat .t{font-size: 12px; color: var(--muted); font-weight: 700}
+
+    /* Sections */
+    section{padding: 34px 0}
+    .section-title{
+      display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+      margin-bottom: 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -.3px;
+    }
+    .section-title p{margin:0; color: var(--muted); font-weight: 600}
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+
+    .content{padding: 18px}
+    .content p{color: var(--muted); line-height: 1.7; margin: 10px 0 0}
+
+    /* Skills */
+    .chips{display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px}
+    .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--text);
+    }
+    [data-theme="light"] .chip{background: rgba(0,0,0,.03)}
+    .chip small{color: var(--muted); font-weight: 800; margin-left: 6px}
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 1000px){ .projects{grid-template-columns: repeat(2, 1fr)} }
+    @media (max-width: 650px){ .projects{grid-template-columns: 1fr} }
+
+    .proj{
+      padding: 16px;
+      transition: transform .15s ease;
+      position: relative;
+      overflow:hidden;
+    }
+    .proj:hover{transform: translateY(-2px)}
+    .badge{
+      display:inline-flex; align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      font-weight: 800; font-size: 12px; color: var(--muted);
+    }
+    .proj h3{margin: 12px 0 8px; font-size: 16px}
+    .proj p{margin:0; color: var(--muted); line-height: 1.6; font-weight: 600; font-size: 14px}
+    .proj .tags{margin-top: 12px; display:flex; flex-wrap:wrap; gap:8px}
+    .tag{
+      font-size: 12px; font-weight: 900;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+    }
+    .proj .actions{margin-top: 14px; display:flex; gap:10px}
+    .btn.sm{padding: 9px 12px; border-radius: 12px; font-size: 13px}
+
+    /* Timeline */
+    .timeline{display:grid; gap: 12px}
+    .item{
+      padding: 16px;
+      display:flex; gap: 14px; align-items:flex-start;
+    }
+    .bullet{
+      width: 12px; height:12px; border-radius: 99px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 20px rgba(139,92,246,.35);
+    }
+    .item h4{margin:0; font-size: 15px}
+    .item .meta2{margin-top: 6px; color: var(--muted); font-weight: 700; font-size: 13px}
+    .item .desc{margin-top: 10px; color: var(--muted); line-height: 1.65; font-weight: 600}
+
+    /* Contact */
+    form{display:grid; gap: 10px; margin-top: 12px}
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 700;
+      outline:none;
+    }
+    [data-theme="light"] input, [data-theme="light"] textarea{
+      background: rgba(255,255,255,.7);
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input::placeholder, textarea::placeholder{color: rgba(255,255,255,.40)}
+    [data-theme="light"] input::placeholder, [data-theme="light"] textarea::placeholder{color: rgba(0,0,0,.35)}
+    .foot{
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align:center;
+      border-top: 1px solid var(--line);
+      margin-top: 20px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* Reveal animations */
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform: translateY(0)}
+  </style>
+</head>
+
+<body data-theme="dark">
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo"></span>
+        <span>Krish Bikram Sah</span>
+      </a>
+
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Theme
+        </button>
+        <a class="btn primary" href="#contact">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M21 8l-9 6L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 8v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Contact Me
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="container grid">
+      <div class="card hero-left reveal">
+        <div class="kicker"><span class="dot"></span> Available for freelance / job</div>
+        <h1>Hi, I’m <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">Krish Bikram Sah</span> — a Developer & Creator.</h1>
+        <p class="sub">
+          I build clean, reliable apps and modern UI experiences. I love turning ideas into products:
+          fast, scalable, and beautiful on every device.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="Cv/Krish_Bikram_Sah_CV.pdf" target="_blank" download>
+            Download CV
+          </a>
+          <a class="btn" href="#about">About Me</a>
+        </div>
+        <div class="meta">
+          <span>📍 Kathmandu / Remote</span>
+          <span>💼 Flutter • Web • Firebase</span>
+          <span>✉️ hashsirk@gmail.com</span>
+        </div>
+      </div>
+
+      <aside class="card hero-right reveal">
+        <div class="profile">
+          <div class="avatar">KBS</div>
+          <div>
+            <h3>Krish Bikram Sah</h3>
+            <p>Full-Stack / Mobile Developer</p>
+          </div>
+        </div>
+
+        <div class="quick">
+          <div class="pill">
+            <b>Top focus</b>
+            <span>App performance + clean UI</span>
+          </div>
+          <div class="pill">
+            <b>Tools</b>
+            <span>Flutter, React, Laravel, Firebase</span>
+          </div>
+          <div class="pill">
+            <b>Style</b>
+            <span>Minimal • premium • cinematic</span>
+          </div>
+          <div class="pill">
+            <b>Open to</b>
+            <span>Internship / Junior / Freelance</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stats-row">
+            <div class="stat">
+              <div class="n">12+</div>
+              <div class="t">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="n">3+</div>
+              <div class="t">Years Learning</div>
+            </div>
+            <div class="stat">
+              <div class="n">5★</div>
+              <div class="t">Client Rating</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ABOUT + HIGHLIGHTS -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>Quick intro and what I do best</p>
+      </div>
+
+      <div class="two">
+        <div class="card content reveal">
+          <h3 style="margin:0;font-size:16px;">My story</h3>
+          <p>
+            I’m a developer who enjoys building practical software — from mobile apps to web platforms.
+            I focus on clean architecture, strong UI, and reliable backend integration.
+            I’m especially interested in products that help people (education, health, local business).
+          </p>
+          <p>
+            Currently, I’m working on multi-vendor ordering systems, dashboards, and real-time features using Flutter + Firebase and modern web stacks.
+          </p>
+        </div>
+
+        <div class="card content reveal">
+          <h3 style="margin:0;font-size:16px;">Highlights</h3>
+          <p>✅ Strong at: UI building, Firebase/REST integration, auth flows, role-based panels.</p>
+          <p>✅ Comfortable with: Flutter, Dart, React, PHP/Laravel, MySQL, Git.</p>
+          <p>✅ I care about: fast loading, clean design, and maintainable code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>What I use to build products</p>
+      </div>
+
+      <div class="card content reveal">
+        <div class="chips">
+          <div class="chip">Flutter <small>Mobile</small></div>
+          <div class="chip">Firebase <small>Auth/DB</small></div>
+          <div class="chip">Dart <small>Clean code</small></div>
+          <div class="chip">React <small>Web UI</small></div>
+          <div class="chip">Laravel <small>Backend</small></div>
+          <div class="chip">MySQL <small>Database</small></div>
+          <div class="chip">REST APIs <small>Integration</small></div>
+          <div class="chip">UI/UX <small>Design sense</small></div>
+          <div class="chip">Git <small>Version control</small></div>
+          <div class="chip">Testing <small>Basic</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Real work (replace with your own)</p>
+      </div>
+
+      <div class="projects">
+        <div class="card proj reveal">
+          <span class="badge">Mobile App</span>
+          <h3>Food Ordering (Multi-Vendor)</h3>
+          <p>Flutter + Firebase app with user, trader, and admin panels. Orders, tracking, role access, and dashboards.</p>
+          <div class="tags">
+            <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Admin Panel</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add live link'); return false;">Live</a>
+            <a class="btn sm" href="#" onclick="alert('Add GitHub link'); return false;">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj reveal">
+          <span class="badge">Web App</span>
+          <h3>Job Portal (Laravel)</h3>
+          <p>Dynamic job portal with authentication, job posting, applicant tracking, and admin management.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Bootstrap</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add live link'); return false;">Live</a>
+            <a class="btn sm" href="#" onclick="alert('Add GitHub link'); return false;">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj reveal">
+          <span class="badge">System</span>
+          <h3>HealthMate Tracker</h3>
+          <p>Health tracking with charts and reminders (sleep, hydration). Data sync and analytics dashboard.</p>
+          <div class="tags">
+            <span class="tag">Flutter</span><span class="tag">Charts</span><span class="tag">Notifications</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add demo link'); return false;">Demo</a>
+            <a class="btn sm" href="#" onclick="alert('Add repo link'); return false;">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj reveal">
+          <span class="badge">3D / Web</span>
+          <h3>Quotation Generator</h3>
+          <p>Quotation system with tile calculation + 3D room visualization concept and pricing output.</p>
+          <div class="tags">
+            <span class="tag">React</span><span class="tag">Three.js</span><span class="tag">Laravel</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add live link'); return false;">Live</a>
+            <a class="btn sm" href="#" onclick="alert('Add GitHub link'); return false;">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj reveal">
+          <span class="badge">Academic</span>
+          <h3>VR Fire Safety Drill</h3>
+          <p>360° safety simulation with hotspots and quiz scoring for training and assessment.</p>
+          <div class="tags">
+            <span class="tag">A-Frame</span><span class="tag">JS</span><span class="tag">UI</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add demo link'); return false;">Demo</a>
+            <a class="btn sm" href="#" onclick="alert('Add code link'); return false;">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj reveal">
+          <span class="badge">Desktop</span>
+          <h3>Gym Membership System</h3>
+          <p>Java Swing system with membership, payment records, and file save/load features.</p>
+          <div class="tags">
+            <span class="tag">Java</span><span class="tag">Swing</span><span class="tag">File I/O</span>
+          </div>
+          <div class="actions">
+            <a class="btn sm primary" href="#" onclick="alert('Add screenshots link'); return false;">Screens</a>
+            <a class="btn sm" href="#" onclick="alert('Add repo link'); return false;">Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Experience & Education</h2>
+        <p>Timeline (edit your real details)</p>
+      </div>
+
+      <div class="card content reveal">
+        <div class="timeline">
+          <div class="item card" style="box-shadow:none;">
+            <div class="bullet"></div>
+            <div>
+              <h4>BSc (Hons) Computing — Leeds Beckett University</h4>
+              <div class="meta2">2022 – 2026 • Final Year</div>
+              <div class="desc">Focused on software engineering, databases, mobile development, and project work.</div>
+            </div>
+          </div>
+
+          <div class="item card" style="box-shadow:none;">
+            <div class="bullet"></div>
+            <div>
+              <h4>Freelance / Personal Projects</h4>
+              <div class="meta2">2023 – Present</div>
+              <div class="desc">Built multi-role apps, dashboards, authentication systems, and responsive websites.</div>
+            </div>
+          </div>
+
+          <div class="item card" style="box-shadow:none;">
+            <div class="bullet"></div>
+            <div>
+              <h4>Internship / Job (Add if available)</h4>
+              <div class="meta2">Company • Date</div>
+              <div class="desc">Add 2–3 lines: what you built, tools used, and impact.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s work together</p>
+      </div>
+
+      <div class="two">
+        <div class="card content reveal">
+          <h3 style="margin:0;font-size:16px;">Get in touch</h3>
+          <p>
+            Email me for jobs, collaborations, or freelance work.
+            I usually reply within 24–48 hours.
+          </p>
+
+          <div class="chips" style="margin-top:14px">
+            <a class="chip" href="mailto:hashsirk@gmail.com">Email</a>
+            <a class="chip" href="#" onclick="alert('Add your LinkedIn link'); return false;">LinkedIn</a>
+            <a class="chip" href="#" onclick="alert('Add your GitHub link'); return false;">GitHub</a>
+            <a class="chip" href="#" onclick="alert('Add your Instagram link'); return false;">Instagram</a>
+          </div>
+        </div>
+
+        <div class="card content reveal">
+          <h3 style="margin:0;font-size:16px;">Message</h3>
+
+          <!-- Works without backend: opens mail client -->
+          <form id="contactForm">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" placeholder="Your email" type="email" required />
+            <textarea id="msg" placeholder="Write your message..." required></textarea>
+            <button class="btn primary" type="submit">Send Message</button>
+            <div id="formNote" style="color:var(--muted); font-weight:700; font-size:13px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    © <span id="year"></span> Krish Bikram Sah • Built with love • <span style="opacity:.8">Dark luxury theme</span>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const root = document.body;
+
+    // Remember theme
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+
+    themeBtn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Reveal on scroll
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form -> mailto
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+      if (!name || !email || !msg) return;
+
+      const to = "hashsirk@gmail.com"; // TODO: replace with your email
+      const subject = encodeURIComponent(`Portfolio Contact — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}\n`);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      note.textContent = "Opening your email app… (If it didn’t open, copy your message and email me manually.)";
+    });
+  </script>
+</body>
+</html>
